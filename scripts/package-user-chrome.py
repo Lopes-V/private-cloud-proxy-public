@@ -23,7 +23,7 @@ BRIDGE_FILES = ('.env.example', 'LICENSE', 'Start-Private-Proxy.cmd', 'package.j
                 'bridge/tunnel-stream.mjs', 'bridge/lock.mjs', 'bridge/tls-resume.mjs', 'bridge/limits.mjs',
                 'bridge/fast-open.mjs', 'bridge/session-queue.mjs', 'bridge/diagnostics.mjs',
                 'bridge/budget.mjs', 'bridge/policy.mjs', 'bridge/data/iana-special.json',
-                'bridge/check-remote.mjs', 'docs/WINDOWS-STARTUP.md', 'docs/PERFORMANCE.md',
+                'bridge/check-remote.mjs',
                 'docs/USER-CHROME-WINDOWS.md')
 
 
