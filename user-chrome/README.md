@@ -2,7 +2,7 @@
 
 Estes são os fontes do ChromeProtegido enviados pelo usuário. A interface de navegação foi preservada. A edição integrada usa rede gerenciada e requer o cliente de proxy ativo; as opções de acesso direto da documentação original abaixo não ficam disponíveis nesta edição.
 
-Para executar, use o pacote completo e `Start-Private-Proxy.cmd`. Consulte [o passo a passo do sistema](../README.md) e [o guia do pacote](../docs/USER-CHROME-WINDOWS.md).
+Para executar, use o pacote completo e `Start-Private-Proxy.cmd`. Consulte [o passo a passo do sistema](../README.md) O pacote é gerado localmente com `scripts/package-user-chrome.py --archive <main.zip> --endpoint <wss://...>`; o runtime não é distribuído neste repositório.
 
 **Projeto para estudo, sem garantia. O autor não se responsabiliza pelo uso indevido por terceiros, nos limites da legislação aplicável. Cada usuário responde por suas ações e autorizações.**
 

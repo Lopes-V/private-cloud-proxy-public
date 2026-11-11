@@ -41,7 +41,7 @@ remota falha; o navegador não passa silenciosamente para conexão direta.
 ## Passo a passo: usar o navegador pronto
 
 1. Gere o pacote localmente com `python scripts/package-user-chrome.py --archive CAMINHO/main.zip --endpoint wss://HOST/tunnel`
-   (veja [docs/USER-CHROME-WINDOWS.md](docs/USER-CHROME-WINDOWS.md)); o runtime não é distribuído neste repositório.
+   (o `main.zip` do runtime não é distribuído neste repositório).
 2. Use o ZIP gerado em `dist/` e o `.sha256` correspondente para conferir a integridade.
 3. Feche clientes antigos do proxy e as janelas antigas do navegador.
 4. **Extraia o ZIP inteiro** numa pasta gravável, por exemplo
@@ -101,8 +101,8 @@ Para estudar com sua própria conta e suas próprias credenciais:
 2. Confirme somente o **Web Service Free**, sem banco, disco ou recurso pago.
    Não cadastre cartão nem habilite cobrança para seguir este procedimento.
 3. Aguarde o CI e o deploy. O Blueprint usa **After CI Checks Pass** e o comando
-   de build executa os testes. Para um serviço já criado, siga
-   [o guia de configurações do Render](docs/RENDER-SETTINGS.md).
+   de build executa os testes. Para um serviço já criado, ative o auto-deploy
+   **After CI Checks Pass** nas configurações do serviço no painel do Render.
 4. Guarde o `TUNNEL_TOKEN` no painel privado do Render. Cada operador deve
    utilizar seu próprio segredo; nenhum valor real acompanha este repositório.
 5. Ao construir seu pacote, configure o endpoint `wss://SEU-SERVICO.onrender.com/tunnel`.
@@ -136,7 +136,7 @@ restrições da Render continuam aplicáveis; o projeto não mede o consumo fatu
 | O navegador não abriu | Confirme a extração completa, incluindo a pasta `ChromeProtegido`. |
 | Demora na primeira página | Aguarde a retomada natural do serviço Free. |
 
-Outros diagnósticos estão em [WINDOWS-STARTUP.md](docs/WINDOWS-STARTUP.md).
+Os códigos de erro mostrados pelo cliente (entre colchetes) identificam a falha.
 Ao relatar uma falha, envie somente a mensagem e o código, sem segredos, cookies
 ou URLs privadas.
 
@@ -162,8 +162,9 @@ python3 -m unittest discover -s scripts/test -p test_package_user_chrome.py
 ```
 
 A construção do pacote reutiliza o arquivo original fornecido com SHA-256 fixado e
-preserva todos os arquivos do runtime, exceto `resources/app.asar`. Veja
-[o guia de construção e smoke nativo Windows](docs/USER-CHROME-WINDOWS.md).
+preserva todos os arquivos do runtime, exceto `resources/app.asar`. O pacote é gerado
+localmente com `scripts/package-user-chrome.py --archive <main.zip> --endpoint <wss://...>`
+(`--archive` é obrigatório; tamanho e SHA-256 são verificados).
 As licenças originais dos componentes acompanham o pacote.
 
 Os testes existentes do proxy incluem TLS, autenticação, política de destinos,

@@ -112,7 +112,7 @@ try {
   const secret = process.env.TUNNEL_TOKEN || await ask('Segredo do serviço (entrada oculta; não será salvo): ',true);
   if(typeof secret!=='string' || secret.length<32)throw new Error('Invalid secret');
   stage='proxy';
-  // Optional idle-tunnel pool (OFF unless measured; see docs/PERFORMANCE.md).
+  // Optional idle-tunnel pool (OFF unless measured).
   const poolSize = Number(process.env.PCP_TUNNEL_POOL || 0);
   proxy = createLocalProxy({ endpoint, secret, budget, poolSize: Number.isInteger(poolSize) && poolSize >= 0 && poolSize <= 4 ? poolSize : 0 });
   stage='listen';

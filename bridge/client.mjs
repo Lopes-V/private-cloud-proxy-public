@@ -46,7 +46,7 @@ function removeHopHeaders(headers) {
 //   with a short backoff, so a mistyped domain fails fast.
 // - Definitive: AUTH_FAILED, DNS_REJECTED/policy, TRAFFIC_LIMIT, TLS/cert
 //   errors, TCP_CONNECTION_REFUSED, NXDOMAIN, and anything after data flowed.
-// Traffic accounting (never undercount real traffic; see docs/PERFORMANCE.md):
+// Traffic accounting (never undercount real traffic):
 // - RELAY_CONNECTION_BYTES per new TCP+TLS connection to the relay. Reserved
 //   before connecting (so no byte can leave uncounted at the quota edge) and
 //   refunded only when TCP to the relay provably never connected (failure
@@ -59,7 +59,7 @@ function removeHopHeaders(headers) {
 export const RELAY_CONNECTION_BYTES = 8192;
 export const CONTROL_REQUEST_BYTES = 2048;
 // Optional pool of pre-authenticated idle tunnels (feature flag, OFF by
-// default; enable only after measuring, see docs/PERFORMANCE.md). Entries
+// default; enable only after measuring). Entries
 // expire after POOL_IDLE_MS (below the relay's 120 s idle) and are never
 // replaced on expiry: they are refilled only when a request consumes one
 // while the user was active within POOL_IDLE_MS. No artificial keep-alive.

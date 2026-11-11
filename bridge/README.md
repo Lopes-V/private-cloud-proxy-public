@@ -32,7 +32,7 @@ O Render documenta suspensão por tráfego de saída incomum, sem publicar um va
 
 ## Deploy e autorização
 
-O Blueprint foi validado contra o JSON Schema oficial. Render cria só um Web Service Free, Node, URL `onrender.com` e segredo gerado. GitHub → Render faz build via `npm ci --omit=dev --ignore-scripts && npm test`; o Blueprint pede auto-deploy somente após os checks de CI. Confira as configurações efetivas no [guia do painel](../docs/RENDER-SETTINGS.md). Não há Docker privilegiado, DB, disco persistente, domínio pago ou dependência de Oracle/DigitalOcean.
+O Blueprint foi validado contra o JSON Schema oficial. Render cria só um Web Service Free, Node, URL `onrender.com` e segredo gerado. GitHub → Render faz build via `npm ci --omit=dev --ignore-scripts && npm test`; o Blueprint pede auto-deploy somente após os checks de CI. Confira as configurações efetivas no painel do Render. Não há Docker privilegiado, DB, disco persistente, domínio pago ou dependência de Oracle/DigitalOcean.
 
 Para verificações remotas, injete `TUNNEL_TOKEN` por um mecanismo seguro de segredos do seu ambiente (nunca em argumentos, código ou arquivos versionados). Para uso local persistente, use somente o arquivo `.env` ignorado pelo Git. Não adicione cartão e pare se houver verificação/plano pago obrigatório.
 
@@ -89,4 +89,4 @@ A sessão individual foi limitada a 16 MiB; o teto de 64 MiB por processo e o cl
 
 Para repetir a aceitação da página inicial com todos os recursos habilitados, use `node bridge/test/steam-page.mjs` com `TUNNEL_TOKEN` injetado por configuração segura (e opcionalmente `--output=/caminho/resultado.json`). Ela limita cada teste a 24 MiB e recusa começar com menos de 28 MiB restantes no processo remoto. Não é executada automaticamente no CI. Os resultados dependem do seu próprio serviço e não são versionados.
 
-A revisão de desempenho posterior alinha o teto do processo a 128 MiB, mantendo o cliente em 128 MiB/mês. A verificação de prontidão e o cancelamento explícito estão documentados em [PERFORMANCE.md](../docs/PERFORMANCE.md). Registros de testes anteriores com teto de 64 MiB são históricos.
+A revisão de desempenho posterior alinha o teto do processo a 128 MiB, mantendo o cliente em 128 MiB/mês. Registros de testes anteriores com teto de 64 MiB são históricos.
