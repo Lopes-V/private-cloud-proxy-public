@@ -16,6 +16,25 @@ Cada usuário é responsável por suas ações, pelos recursos que configurar e 
 obter as autorizações necessárias. Use somente em ambientes e redes autorizados,
 respeitando a legislação, as políticas de rede e os termos dos serviços acessados.
 
+### Seus dados, suas credenciais
+
+Este repositório **não contém** serviço, endpoint, token, conta, runtime de navegador
+nem dados do autor, e o autor não tem acesso ao que você configurar ou navegar. Quem
+usar o projeto traz o que é seu e responde por tudo isso:
+
+- **Serviço próprio:** você cria seu Web Service no Render e informa o endpoint
+  (`--endpoint` ou `TUNNEL_URL`); o valor `seu-servico.onrender.com` é só placeholder.
+- **Segredo próprio:** o `TUNNEL_TOKEN` é gerado e guardado por você; nunca o publique,
+  não o coloque em arquivos versionados nem o envie a terceiros.
+- **Runtime próprio:** o `main.zip` do navegador não é distribuído aqui; use apenas um
+  runtime que você tenha direito de usar e redistribuir.
+- **Sem telemetria do projeto:** o código não envia dados ao autor. O tráfego vai
+  somente ao seu relay. Pontos a conhecer: a barra de endereço usa uma busca do Google
+  para termos que não são URLs, e `bridge/check-remote.mjs`, se você o executar,
+  consulta `api.ipify.org` para informar o IP de saída.
+- **Pacotes gerados são privados por padrão:** um zip construído com o seu endpoint
+  real contém esse endereço; não o publique.
+
 ## Como funciona
 
 ```text
