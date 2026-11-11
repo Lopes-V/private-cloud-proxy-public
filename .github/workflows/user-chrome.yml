@@ -1,0 +1,45 @@
+name: ChromeProtegido tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    name: Test browser source, proxy policy and packager
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.22.1'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install pinned bridge dependencies
+        run: npm ci --omit=dev --ignore-scripts --no-audit --no-fund
+      # The complete proxy suite remains mandatory in ci.yml on Linux. Its curl/CA
+      # fixtures use Linux paths; here verify bridge syntax and installed imports.
+      - name: Verify packaged bridge syntax and imports on Windows
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-ChildItem -LiteralPath bridge -Filter '*.mjs' -File | ForEach-Object {
+            node --check $_.FullName
+            if ($LASTEXITCODE -ne 0) { throw ('Invalid bridge syntax: ' + $_.Name) }
+          }
+          node --input-type=module -e "await import('ws'); await import('ipaddr.js'); console.log('Pinned bridge imports OK')"
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned bridge imports failed' }
+      - name: Test browser source and managed proxy policy
+        working-directory: user-chrome
+        run: node --test
+      - name: Test archive validation and binary preservation
+        run: python -m unittest discover -s scripts/test -p test_package_user_chrome.py

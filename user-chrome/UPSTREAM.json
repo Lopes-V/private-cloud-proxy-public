@@ -1,0 +1,12 @@
+{
+  "name": "ChromeProtegido",
+  "source": "supplied separately (not distributed in this repository)",
+  "archiveName": "main.zip",
+  "archiveSha256": "b0ec400dbe6dd60c5b17c1e1d178b933f43966fb06a0cb70dea42cf541db1676",
+  "archiveBytes": 157426933,
+  "originalUnitTests": 44,
+  "runtimePathInArchive": "dist/win-unpacked/",
+  "adaptation": "Network/startup integration only; preserve supplied runtime and browser interface.",
+  "electron": "45.2.3",
+  "build": "electron-builder --windows --dir from user-chrome (productName ChromeProtegido), zipped under dist/win-unpacked/"
+}
